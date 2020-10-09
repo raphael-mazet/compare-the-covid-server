@@ -1,1 +1,1 @@
-# compare-the-covide-server
+# compare-the-covid-server
