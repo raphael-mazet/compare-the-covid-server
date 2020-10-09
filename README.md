@@ -1,0 +1,1 @@
+# compare-the-covide-server
