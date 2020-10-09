@@ -1,13 +1,19 @@
+CREATE TYPE location_type AS ENUM ('restaurant', 'shop', 'office', 'store');
+
 CREATE TABLE "users" (
-  "id" SERIAL PRIMARY KEY,
-  "username" varchar,
-  "password" varchar,
-  "email" varchar
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "username" VARCHAR(255),
+  "userpassword" VARCHAR(255),
+  "email" VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE "savedLocations" (
-  "user_id" int,
-  "location_id" int
+CREATE TABLE "events" (
+  "id" SERIAL PRIMARY KEY,
+  "alertType" location_type,
+  "alertDate" date,
+  "alertScore" int,
+  "created_at" timestamp,
+  "expires_on" timestamp
 );
 
 CREATE TABLE "locations" (
@@ -18,40 +24,14 @@ CREATE TABLE "locations" (
   "googlemap_URL" varchar,
   "location_type" varchar,
   "longitude" float,
-  "latitutde" float
+  "latitutde" float,
+  FOREIGN KEY ("location_events") REFERENCES "events"("id")
 );
 
-CREATE TABLE "LocationEvents" (
-  "id" SERIAL PRIMARY KEY,
-  "alertType" varchar,
-  "alertDate" date,
-  "alertScore" int,
-  "created_at" timestamp,
+CREATE TABLE "savedLocations" (
+  "user_id" int,
   "location_id" int,
-  "expires_on" timestamp
+  FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
+  FOREIGN KEY ("location_id") REFERENCES "locations" ("id")
 );
 
-ALTER TABLE "users" ADD FOREIGN KEY ("id") REFERENCES "savedLocations" ("user_id");
-
-ALTER TABLE "locations" ADD FOREIGN KEY ("id") REFERENCES "savedLocations" ("location_id");
-
-ALTER TABLE "LocationEvents" ADD FOREIGN KEY ("id") REFERENCES "locations" ("location_events");
-
--- ALTER TABLE "locations" ADD COLUMN type transaction_type;
-
-COMMENT ON COLUMN "locations"."location_type" IS '
-    1 = restaurant, 
-    2 = shop,
-    3 = office,
-    4 = store
-  ';
-
-COMMENT ON COLUMN "LocationEvents"."alertType" IS '
-      1 = covid detected
-      2 = possible covid
-      3 = no covid detected
-    ';
-
-COMMENT ON COLUMN "LocationEvents"."expires_on" IS '
-    check latest log and deactivate if expired
-  ';
