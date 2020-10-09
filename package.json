@@ -1,6 +1,16 @@
 {
   "dependencies": {
     "apollo-server": "^2.18.2",
+    "commitizen": "^4.2.1",
+    "dotenv": "^8.2.0",
     "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
