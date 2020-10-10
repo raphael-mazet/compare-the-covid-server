@@ -1,11 +1,47 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model events {
+  id         Int         @id @default(autoincrement())
+  alertType  String?
+  alertDate  DateTime?
+  alertScore Int?
+  created_at DateTime?
+  expires_on DateTime?
+  locations  locations[]
+}
+
+model locations {
+  id              Int              @id @default(autoincrement())
+  location_events Int?
+  name            String?
+  country         String?
+  googlemap_URL   String?
+  location_type   String?
+  longitude       Float?
+  latitutde       Float?
+  events          events?          @relation(fields: [location_events], references: [id])
+  savedLocations  savedLocations[]
+}
+
+model savedLocations {
+  id          Int        @id @default(autoincrement())
+  user_id     Int?
+  location_id Int?
+  locations   locations? @relation(fields: [location_id], references: [id])
+  users       users?     @relation(fields: [user_id], references: [id])
+}
+
+model users {
+  id             Int              @id @default(autoincrement())
+  username       String?
+  password       String?
+  email          String?
+  savedLocations savedLocations[]
 }
