@@ -33,5 +33,6 @@ CREATE TABLE "savedLocations" (
   "user_id" int,
   FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE,
   "location_id" int,
-  FOREIGN KEY ("location_id") REFERENCES "locations"("id") ON DELETE CASCADE
+  FOREIGN KEY ("location_id") REFERENCES "locations"("id") ON DELETE CASCADE,
+  "selection_date" timestamp
 );
