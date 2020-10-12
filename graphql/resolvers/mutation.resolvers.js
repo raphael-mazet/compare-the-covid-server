@@ -36,16 +36,28 @@ exports.createNewLocation = (parent, args, ctx) => {
   })
 };
 
-exports.createNewSavedLocation = (parent, args, ctx) => {
-  return ctx.prisma.savedLocations.create({
-    data: { 
-      users: {
-        connect: { id: args.user_id }
-      },
-      locations: {
-        connect: { id: args.location_id,}
-      },
-      selection_date: args.selection_date,
+
+
+exports.createNewSavedLocation = async (parent, args, ctx) => {
+  const locationExists = await ctx.prisma.savedLocations.findMany({
+    where: { 
+      user_id: { equals: args.user_id },
+      location_id: { equals: args.location_id },
     }
-  })
+  });
+  if (locationExists) {
+    return locationExists[0];
+  } else {
+    return ctx.prisma.savedLocations.create({
+      data: { 
+        users: {
+          connect: { id: args.user_id }
+        },
+        locations: {
+          connect: { id: args.location_id,}
+        },
+        selection_date: args.selection_date,
+      }
+    });
+  }
 };

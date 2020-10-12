@@ -5,6 +5,7 @@ exports.LocationsRelationToEvents = (parent, args, context) => {
 }
 
 exports.SavedLocationsRelationToUsers = (parent, args, context) => {
+  console.log('parent',parent)
   return context.prisma.users.findOne({
     where: { id: parent.user_id }
   })

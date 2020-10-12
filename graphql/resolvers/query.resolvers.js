@@ -28,8 +28,14 @@ exports.getLocationbyId = async (parent, args, ctx) => {
   });
 };
 
-exports.savedLocationbyId = async (parent, args, ctx) => {
-  return ctx.prisma.savedLocations.findOne({
-    where: { id: args.id }
-  });
+exports.savedLocationbyUser_Id = async (parent, args, ctx) => {
+  return ctx.prisma.savedLocations.findMany({
+    where: { user_id: args.user_id }
+  }); 
+};
+
+exports.savedLocationbyLocation_Id = async (parent, args, ctx) => {
+  return ctx.prisma.savedLocations.findMany({
+    where: { location_id: args.location_id }
+  }); 
 };

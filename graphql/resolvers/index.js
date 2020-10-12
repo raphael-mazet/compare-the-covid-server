@@ -11,7 +11,8 @@ const resolvers = {
     getEventsbyAlertType: query.eventsbyAlertType,
     getLocationbyURL: query.getLocationbyURL,
     getLocationbyId: query.getLocationbyId,
-    getSavedLocationbyId: query.savedLocationbyId,
+    getSavedLocationbyUser_Id: query.savedLocationbyUser_Id,
+    getSavedLocationbyLocation_Id: query.savedLocationbyLocation_Id,
   },
   Mutation: {
     createUser: mutation.createNewUser,
