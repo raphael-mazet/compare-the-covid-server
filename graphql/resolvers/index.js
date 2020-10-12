@@ -22,8 +22,8 @@ const resolvers = {
     createLocation: mutationCreate.createNewLocation,
     createSavedLocation: mutationCreate.createNewSavedLocation,
   },
-  Locations: {
-    location_events: types.LocationsRelationToEvents
+  Events: {
+    location_id: types.EventsRelationToLocation
   },
   SavedLocations: {
     user_id: types.SavedLocationsRelationToUsers,

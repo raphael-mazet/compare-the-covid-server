@@ -13,13 +13,13 @@ module.exports = `
     alertType: String
     alertDate: DateScalar
     alertScore: Int
+    location_id: Locations
     created_at: DateScalar
     expires_on: DateScalar
   }
 
   type Locations {
     id: Int!
-    location_events: Events
     name: String
     country: String
     googlemap_URL: String

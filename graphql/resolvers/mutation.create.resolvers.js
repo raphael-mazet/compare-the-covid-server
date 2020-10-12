@@ -22,6 +22,9 @@ exports.createNewEvent = (parent, args, ctx) => {
       alertType: args.alertType,
       alertDate: args.alertDate,
       alertScore: args.alertScore,
+      locations: {
+        connect: { id: args.location_id,}
+      },
       created_at: args.created_at,
       expires_on: args.expires_on,
     }
@@ -31,9 +34,6 @@ exports.createNewEvent = (parent, args, ctx) => {
 exports.createNewLocation = (parent, args, ctx) => {
   return ctx.prisma.locations.create({
     data: { 
-      events: {
-        connect: { id: args.location_events }
-      },
       name: args.name,
       country: args.country,
       googlemap_URL: args.googlemap_URL,

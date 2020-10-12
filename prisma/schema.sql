@@ -14,7 +14,7 @@ CREATE TABLE "locations" (
   "googlemap_URL" varchar UNIQUE,
   "location_type" varchar,
   "longitude" float,
-  "latitutde" float
+  "latitude" float
 );
 
 CREATE TABLE "events" (

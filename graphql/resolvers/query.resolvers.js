@@ -22,7 +22,7 @@ exports.eventsbyAlertType = (parent, args, ctx) => {
 };
 
 exports.getLocationbyURL = (parent, args, ctx) => {
-  return ctx.prisma.locations.findMany({
+  return ctx.prisma.locations.findOne({
     where: { googlemap_URL: args.googlemap_URL }
   });
 };

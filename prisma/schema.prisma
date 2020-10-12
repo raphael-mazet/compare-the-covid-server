@@ -25,7 +25,7 @@ model locations {
   googlemap_URL  String?          @unique
   location_type  String?
   longitude      Float?
-  latitutde      Float?
+  latitude       Float?
   events         events[]
   savedLocations savedLocations[]
 }
