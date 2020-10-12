@@ -11,14 +11,20 @@ const resolvers = {
     getEventsbyAlertType: query.eventsbyAlertType,
     getLocationbyURL: query.getLocationbyURL,
     getLocationbyId: query.getLocationbyId,
+    getSavedLocationbyId: query.savedLocationbyId,
   },
   Mutation: {
     createUser: mutation.createNewUser,
     createEvent: mutation.createNewEvent,
     createLocation: mutation.createNewLocation,
+    createSavedLocation: mutation.createNewSavedLocation,
   },
   Locations: {
     location_events: types.LocationsRelationToEvents
+  },
+  SavedLocations: {
+    user_id: types.SavedLocationsRelationToUsers,
+    location_id: types.SavedLocationsRelationToLocation,
   },
   DateScalar,
 };

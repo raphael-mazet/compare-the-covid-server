@@ -30,11 +30,9 @@ module.exports = `
   
   type SavedLocations {
     id: Int!
-    user_id: Int
-    location_id: Int
+    user_id: Users
+    location_id: Locations
     selection_date: DateScalar
-    locations: [Locations]
-    users: [Users]
   }
 `;
 

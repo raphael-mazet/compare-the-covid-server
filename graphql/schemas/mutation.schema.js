@@ -23,5 +23,12 @@ module.exports = `
       longitude: Int
       latitude: Int
     ) :Locations!
+
+    createSavedLocation(
+      user_id: Int
+      location_id: Int
+      selection_date: DateScalar
+    ) :SavedLocations!
+
   }
 `;

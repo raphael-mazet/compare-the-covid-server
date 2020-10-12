@@ -5,5 +5,6 @@ module.exports = `
     getEventsbyAlertType(alertType: String!): [Events!]!
     getLocationbyId(id: Int!): Locations!
     getLocationbyURL(googlemap_URL: String!): [Locations]
+    getSavedLocationbyId(id: Int!): SavedLocations
   }
 `;

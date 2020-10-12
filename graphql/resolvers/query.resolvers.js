@@ -27,3 +27,9 @@ exports.getLocationbyId = async (parent, args, ctx) => {
     where: { id: args.id }
   });
 };
+
+exports.savedLocationbyId = async (parent, args, ctx) => {
+  return ctx.prisma.savedLocations.findOne({
+    where: { id: args.id }
+  });
+};
