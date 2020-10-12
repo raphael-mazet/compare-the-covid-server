@@ -37,13 +37,13 @@ exports.createNewLocation = (parent, args, ctx) => {
 };
 
 exports.createNewSavedLocation = (parent, args, ctx) => {
-  return ctx.prisma.locations.create({
+  return ctx.prisma.savedLocations.create({
     data: { 
       users: {
         connect: { id: args.user_id }
       },
       locations: {
-        connect: { id: args.location_id }
+        connect: { id: args.location_id,}
       },
       selection_date: args.selection_date,
     }
