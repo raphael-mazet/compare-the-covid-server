@@ -51,7 +51,8 @@ exports.createNewSavedLocation = async (parent, args, ctx) => {
       location_id: { equals: args.location_id },
     }
   });
-  if (locationExists) {
+
+  if (locationExists.length) {
     return locationExists[0];
   } else {
     return ctx.prisma.savedLocations.create({

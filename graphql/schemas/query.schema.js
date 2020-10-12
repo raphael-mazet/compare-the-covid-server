@@ -1,8 +1,8 @@
 module.exports = `
   type Query {
-    getUserbyId (id: Int!): Users!
+    getUserbyId (id: Int!): Users
     getUserbyUsernameAndPassword (username: String!, password:String!): Users
-    getEventsbyAlertType (alertType: String!): [Events!]!
+    getEventsbyAlertType (alertType: String!): [Events]
     getLocationbyId (id: Int!): Locations
     getLocationbyURL (googlemap_URL: String!): Locations
     getSavedLocationbyUser_Id (user_id: Int!): [SavedLocations]

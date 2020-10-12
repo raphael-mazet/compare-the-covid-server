@@ -16,10 +16,9 @@ module.exports = `
     ) :Events!
 
     createLocation(
-      location_events: Int
-      name: String
+      name: String!
       country: String
-      googlemap_URL: String
+      googlemap_URL: String!
       location_type: String
       longitude: Int
       latitude: Int
