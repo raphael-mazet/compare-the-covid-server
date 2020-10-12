@@ -21,6 +21,13 @@ exports.eventsbyAlertType = (parent, args, ctx) => {
   });
 };
 
+exports.eventsbyLocation_Id = (parent, args, ctx) => {
+  return ctx.prisma.events.findMany({
+    where: { location_id: args.location_id }
+  });
+};
+
+
 exports.getLocationbyURL = (parent, args, ctx) => {
   return ctx.prisma.locations.findOne({
     where: { googlemap_URL: args.googlemap_URL }
