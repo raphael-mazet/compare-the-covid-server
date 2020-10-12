@@ -4,7 +4,8 @@ const query = require('./query.resolvers.js');
 
 const resolvers = {
   Query: {
-    user: query.user
+    getUserbyId: query.userbyId,
+    getUserbyUsername: query.userbyUsername
   }
 };
 

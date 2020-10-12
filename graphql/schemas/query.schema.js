@@ -1,5 +1,6 @@
 module.exports = `
   type Query {
-    user(id: Int!): Users!
+    getUserbyId(id: Int!): Users!
+    getUserbyUsername(username: String!): Users!
   }
 `;
