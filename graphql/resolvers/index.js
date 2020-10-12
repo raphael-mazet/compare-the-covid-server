@@ -17,9 +17,9 @@ const resolvers = {
     createEvent: mutation.createNewEvent,
     createLocation: mutation.createNewLocation,
   },
-  // Locations: {
-  //   location_events: types.getEvents
-  // },
+  Locations: {
+    location_events: types.LocationsRelationToEvents
+  },
   DateScalar,
 };
 
