@@ -22,8 +22,13 @@ exports.getLocationbyURL = (parent, args, ctx) => {
   })
 };
 
-exports.getLocationbyId = (parent, args, ctx) => {
-  return ctx.prisma.locations.findOne({
+exports.getLocationbyId = async (parent, args, ctx) => {
+  const data = await ctx.prisma.locations.findOne({
     where: { id: args.id }
   })
+  const event = await ctx.prisma.events.findOne({
+    where: { id: data.location_events }
+  })
+  data.location_events = event
+  return data
 };

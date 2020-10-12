@@ -1,7 +1,7 @@
 const query = require('./query.resolvers.js');
 const mutation = require('./mutation.resolvers.js');
 const DateScalar = require('./date.scalar.js');
-// const types = require('./types.resolvers.js');
+const types = require('./types.resolvers.js');
 
 
 const resolvers = {
@@ -17,6 +17,9 @@ const resolvers = {
     createEvent: mutation.createNewEvent,
     createLocation: mutation.createNewLocation,
   },
+  // Locations: {
+  //   location_events: types.getEvents
+  // },
   DateScalar,
 };
 
