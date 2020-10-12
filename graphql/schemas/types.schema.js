@@ -19,12 +19,12 @@ module.exports = `
 
   type Locations {
     id: Int!
-    location_events: Int
+    location_events: Events
     name: String
     country: String
     googlemap_URL: String
     location_type: String
-    longitute: Int
+    longitude: Int
     latitude: Int
   }
   

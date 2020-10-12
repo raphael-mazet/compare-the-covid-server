@@ -20,7 +20,7 @@ module.exports = `
       country: String
       googlemap_URL: String
       location_type: String
-      longitute: Int
+      longitude: Int
       latitude: Int
     ) :Locations!
   }

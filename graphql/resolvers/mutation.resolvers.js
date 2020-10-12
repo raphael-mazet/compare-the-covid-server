@@ -30,7 +30,7 @@ exports.createNewLocation = (parent, args, ctx) => {
       country: args.country,
       googlemap_URL: args.googlemap_URL,
       location_type: args.location_type,
-      longitute: args.longitute,
+      longitude: args.longitude,
       latitude: args.latitude,
     }
   })

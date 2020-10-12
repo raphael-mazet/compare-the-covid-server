@@ -9,6 +9,8 @@ const resolvers = {
     getUserbyId: query.userbyId,
     getUserbyUsername: query.userbyUsername,
     getEventsbyAlertType: query.eventsbyAlertType,
+    getLocationbyURL: query.getLocationbyURL,
+    getLocationbyId: query.getLocationbyId,
   },
   Mutation: {
     createUser: mutation.createNewUser,
