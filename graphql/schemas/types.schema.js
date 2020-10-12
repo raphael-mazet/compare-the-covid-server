@@ -7,6 +7,7 @@ module.exports = `
     password: String!
     email: String!
   }
+
   type Events {
     id: Int!
     alertType: String
@@ -15,6 +16,7 @@ module.exports = `
     created_at: DateScalar
     expires_on: DateScalar
   }
+
   type Locations {
     id: Int!
     location_events: Int
@@ -27,6 +29,7 @@ module.exports = `
     events: [Events]
     savedLocations: [SavedLocations]
   }
+  
   type SavedLocations {
     id: Int!
     user_id: Int
