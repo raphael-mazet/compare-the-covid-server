@@ -10,19 +10,19 @@ module.exports = `
 
   type Events {
     id: Int!
-    alertType: String
-    alertDate: DateScalar
+    alertType: String!
+    alertDate: DateScalar!
     alertScore: Int
-    location_id: Locations
-    created_at: DateScalar
-    expires_on: DateScalar
+    location_id: Locations!
+    created_at: DateScalar!
+    expires_on: DateScalar!
   }
 
   type Locations {
     id: Int!
     name: String
     country: String
-    googlemap_URL: String
+    googlemap_URL: String!
     location_type: String
     longitude: Int
     latitude: Int

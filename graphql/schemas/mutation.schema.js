@@ -10,6 +10,7 @@ module.exports = `
       alertType: String!
       alertDate: DateScalar
       alertScore: Int
+      location_id: Int
       created_at: DateScalar
       expires_on: DateScalar
     ) :Events!

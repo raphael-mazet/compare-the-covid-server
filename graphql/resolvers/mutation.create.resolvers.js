@@ -23,7 +23,7 @@ exports.createNewEvent = (parent, args, ctx) => {
       alertDate: args.alertDate,
       alertScore: args.alertScore,
       locations: {
-        connect: { id: args.location_id,}
+        connect: { id: args.location_id }
       },
       created_at: args.created_at,
       expires_on: args.expires_on,
