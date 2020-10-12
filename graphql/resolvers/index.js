@@ -1,5 +1,7 @@
 const query = require('./query.resolvers.js');
-const mutation = require('./mutation.resolvers.js');
+const mutationCreate = require('./mutation.create.resolvers.js');
+const mutationDelete = require('./mutation.delete.resolvers.js');
+const mutationUpdate = require('./mutation.update.resolvers.js');
 const DateScalar = require('./date.scalar.js');
 const types = require('./types.resolvers.js');
 
@@ -7,7 +9,7 @@ const types = require('./types.resolvers.js');
 const resolvers = {
   Query: {
     getUserbyId: query.userbyId,
-    getUserbyUsername: query.userbyUsername,
+    getUserbyUsernameAndPassword: query.userbyUsernameAndPassword,
     getEventsbyAlertType: query.eventsbyAlertType,
     getLocationbyURL: query.getLocationbyURL,
     getLocationbyId: query.getLocationbyId,
@@ -15,10 +17,10 @@ const resolvers = {
     getSavedLocationbyLocation_Id: query.savedLocationbyLocation_Id,
   },
   Mutation: {
-    createUser: mutation.createNewUser,
-    createEvent: mutation.createNewEvent,
-    createLocation: mutation.createNewLocation,
-    createSavedLocation: mutation.createNewSavedLocation,
+    createUser: mutationCreate.createNewUser,
+    createEvent: mutationCreate.createNewEvent,
+    createLocation: mutationCreate.createNewLocation,
+    createSavedLocation: mutationCreate.createNewSavedLocation,
   },
   Locations: {
     location_events: types.LocationsRelationToEvents

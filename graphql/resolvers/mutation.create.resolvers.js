@@ -1,11 +1,11 @@
-exports.createNewUser = (parent, args, ctx) => {
+exports.createNewUser = async (parent, args, ctx) => {
   return ctx.prisma.users.create({
     data: { 
       username: args.username,
       password: args.password,
       email: args.email,
     }
-  })
+  });
 };
 
 exports.createNewEvent = (parent, args, ctx) => {
@@ -17,7 +17,7 @@ exports.createNewEvent = (parent, args, ctx) => {
       created_at: args.created_at,
       expires_on: args.expires_on,
     }
-  })
+  });
 };
 
 exports.createNewLocation = (parent, args, ctx) => {
@@ -33,10 +33,8 @@ exports.createNewLocation = (parent, args, ctx) => {
       longitude: args.longitude,
       latitude: args.latitude,
     }
-  })
+  });
 };
-
-
 
 exports.createNewSavedLocation = async (parent, args, ctx) => {
   const locationExists = await ctx.prisma.savedLocations.findMany({
