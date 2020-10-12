@@ -1,5 +1,9 @@
-// module.exports = `
-//   type Mutation {
-//     createUser() user!
-//   }
-// `;
+module.exports = `
+  type Mutation {
+    createUser(
+      username: String!
+      password: String!
+      email: String!
+    ) :Users!
+  }
+`;
