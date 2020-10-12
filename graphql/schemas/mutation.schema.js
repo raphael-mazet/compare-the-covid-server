@@ -4,7 +4,7 @@ module.exports = `
       username: String!
       password: String!
       email: String!
-    ) :Users!
+    ) :Users
 
     createEvent(
       alertType: String!

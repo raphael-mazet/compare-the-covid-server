@@ -1,11 +1,19 @@
 exports.createNewUser = async (parent, args, ctx) => {
-  return ctx.prisma.users.create({
-    data: { 
-      username: args.username,
-      password: args.password,
-      email: args.email,
-    }
+  const userExists = await ctx.prisma.users.findOne({
+    where: { username: args.username }
   });
+
+  if (userExists) {
+    return null;
+  } else {
+    return ctx.prisma.users.create({
+      data: { 
+        username: args.username,
+        password: args.password,
+        email: args.email,
+      }
+    });
+  }
 };
 
 exports.createNewEvent = (parent, args, ctx) => {
