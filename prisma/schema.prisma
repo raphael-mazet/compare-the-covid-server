@@ -8,26 +8,26 @@ datasource db {
 }
 
 model events {
-  id         Int         @id @default(autoincrement())
-  alertType  alert_type?
-  alertDate  DateTime?
-  alertScore Int?
-  created_at DateTime?
-  expires_on DateTime?
-  locations  locations[]
+  id          Int         @id @default(autoincrement())
+  alertType   alert_type?
+  alertDate   DateTime?
+  alertScore  Int?
+  location_id Int?
+  created_at  DateTime?
+  expires_on  DateTime?
+  locations   locations?  @relation(fields: [location_id], references: [id])
 }
 
 model locations {
-  id              Int              @id @default(autoincrement())
-  location_events Int?
-  name            String?
-  country         String?
-  googlemap_URL   String?
-  location_type   String?
-  longitude       Float?
-  latitutde       Float?
-  events          events?          @relation(fields: [location_events], references: [id])
-  savedLocations  savedLocations[]
+  id             Int              @id @default(autoincrement())
+  name           String?
+  country        String?
+  googlemap_URL  String?          @unique
+  location_type  String?
+  longitude      Float?
+  latitutde      Float?
+  events         events[]
+  savedLocations savedLocations[]
 }
 
 model savedLocations {
@@ -41,9 +41,10 @@ model savedLocations {
 
 model users {
   id             Int              @id @default(autoincrement())
-  username       String?
-  password       String?
+  username       String?          @unique
+  password       String?          @unique
   email          String?
+  savedLocations savedLocations[]
 }
 
 enum alert_type {
