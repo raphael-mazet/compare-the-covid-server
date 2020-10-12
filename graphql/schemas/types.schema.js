@@ -26,8 +26,6 @@ module.exports = `
     location_type: String
     longitute: Int
     latitude: Int
-    events: [Events]
-    savedLocations: [SavedLocations]
   }
   
   type SavedLocations {

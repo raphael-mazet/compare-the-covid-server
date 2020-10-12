@@ -27,4 +27,4 @@ const DateScalar = new GraphQLScalarType({
   serialize, parseValue, parseLiteral
 });
 
-module.exports = DateScalar
+module.exports = DateScalar;

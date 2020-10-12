@@ -19,3 +19,19 @@ exports.createNewEvent = (parent, args, ctx) => {
     }
   })
 };
+
+exports.createNewLocation = (parent, args, ctx) => {
+  return ctx.prisma.locations.create({
+    data: { 
+      events: {
+        connect: { id: args.location_events }
+      },
+      name: args.name,
+      country: args.country,
+      googlemap_URL: args.googlemap_URL,
+      location_type: args.location_type,
+      longitute: args.longitute,
+      latitude: args.latitude,
+    }
+  })
+};

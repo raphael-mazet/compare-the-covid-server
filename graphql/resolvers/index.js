@@ -13,6 +13,7 @@ const resolvers = {
   Mutation: {
     createUser: mutation.createNewUser,
     createEvent: mutation.createNewEvent,
+    createLocation: mutation.createNewLocation,
   },
   DateScalar,
 };
