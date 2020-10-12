@@ -9,7 +9,7 @@ datasource db {
 
 model events {
   id         Int         @id @default(autoincrement())
-  alertType  String?
+  alertType  alert_type?
   alertDate  DateTime?
   alertScore Int?
   created_at DateTime?
@@ -31,11 +31,12 @@ model locations {
 }
 
 model savedLocations {
-  id          Int        @id @default(autoincrement())
-  user_id     Int?
-  location_id Int?
-  locations   locations? @relation(fields: [location_id], references: [id])
-  users       users?     @relation(fields: [user_id], references: [id])
+  id             Int        @id @default(autoincrement())
+  user_id        Int?
+  location_id    Int?
+  selection_date DateTime?
+  locations      locations? @relation(fields: [location_id], references: [id])
+  users          users?     @relation(fields: [user_id], references: [id])
 }
 
 model users {
@@ -43,5 +44,10 @@ model users {
   username       String?
   password       String?
   email          String?
-  savedLocations savedLocations[]
+}
+
+enum alert_type {
+  confirmed
+  safe
+  suspected
 }

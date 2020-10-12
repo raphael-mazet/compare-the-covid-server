@@ -4,7 +4,8 @@ const prisma = new PrismaClient()
 async function main() {
   await prisma.events.create({
     data: {
-      alertScore: 1,
+      alertScore: 2,
+      alertType: "confirmed"
     }
   })
   await prisma.users.create({

@@ -1,5 +1,5 @@
-module.exports = `
-  type Mutation {
-    
-  }
-`;
+// module.exports = `
+//   type Mutation {
+//     createUser() user!
+//   }
+// `;
