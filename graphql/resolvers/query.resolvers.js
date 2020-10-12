@@ -5,13 +5,13 @@ exports.userbyId = (parent, args, ctx) => {
 };
 
 exports.userbyUsernameAndPassword = async (parent, args, ctx) => {  
-  const usernameExists = await ctx.prisma.users.findMany({
+  const usernameExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
-  if (usernameExists.length) {
-    return usernameExists[0].password === args.password ? usernameExists : [];
+  if (usernameExists) {
+    return usernameExists.password === args.password ? usernameExists : null;
   } else {
-    return [];
+    return null;
   }
 };
 
