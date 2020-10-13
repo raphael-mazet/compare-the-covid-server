@@ -1,7 +1,7 @@
 const server = require('./graphql')
 var dotenv = require('dotenv')
 var dotenvExpand = require('dotenv-expand')
-var myEnv = dotenv.config()
+var myEnv = dotenv.config({path: './prisma/.env'})
 dotenvExpand(myEnv)
 
 const PORT = process.env.PORT || 4000;
