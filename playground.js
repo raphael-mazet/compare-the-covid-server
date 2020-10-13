@@ -193,3 +193,13 @@
 //     count
 //   }
 // }
+
+// mutation {
+//   updateSavedLocationSelectionDate (
+//     user_id:2,
+//     location_id:4,
+//     selection_date:"2011-01-08 04:05:06",
+//   )   {
+//     count
+//   }
+// }

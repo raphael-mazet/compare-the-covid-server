@@ -22,6 +22,7 @@ const resolvers = {
     createEvent: mutationCreate.createNewEvent,
     createLocation: mutationCreate.createNewLocation,
     createSavedLocation: mutationCreate.createNewSavedLocation,
+    updateSavedLocationSelectionDate: mutationUpdate.updateExistingSavedLocation,
     deleteSavedLocation: mutationDelete.deleteExistingSavedLocation,
   },
   Events: {

@@ -30,14 +30,20 @@ module.exports = `
       selection_date: DateScalar
     ) :SavedLocations!
 
+    updateSavedLocationSelectionDate(
+      user_id: Int
+      location_id: Int
+      selection_date: DateScalar
+    ) :BatchPayload
+    
     deleteSavedLocation(
       user_id: Int
       location_id: Int
     ) :BatchPayload
-
   }
   
   type BatchPayload {
     count: Int!
   }
+  
 `;

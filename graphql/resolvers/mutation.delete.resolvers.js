@@ -5,6 +5,5 @@ exports.deleteExistingSavedLocation = async (parent, args, ctx) => {
       location_id: { equals: args.location_id },
     }
   });
-  console.log(locationsDeleted)
   return locationsDeleted
 };
