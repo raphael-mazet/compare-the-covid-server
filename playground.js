@@ -2,8 +2,9 @@
 //   getUserbyId(id:1) {
 //     id
 //     username
-//     email
 //     password
+//     firstName
+//     lastName
 //   }
 // }
 
@@ -11,17 +12,19 @@
 //   getUserbyUsernameAndPassword(username:"davidhardy", password:"admin") {
 //       id
 //     	username
-//     	email
 //     	password
+//     firstName
+//     lastName
 //   }
 // }
 
 // mutation {
-//   createUser (username: "davidhardy", password: "admin", email: "xxx") {
+//   createUser (username: "davidhardy", password: "admin", firstName: "xxx", lastName:"yyy") {
 //     id
 //     username
 //     password
-//     email
+//     firstName
+//     lastName
 //   }
 // }
 
