@@ -8,6 +8,7 @@ datasource db {
 }
 
 model events {
+<<<<<<< HEAD
   id         Int         @id @default(autoincrement())
   alertType  alert_type?
   alertDate  DateTime?
@@ -15,34 +16,45 @@ model events {
   created_at DateTime?
   expires_on DateTime?
   locations  locations[]
+=======
+  id          Int         @id @default(autoincrement())
+  alertType   alert_type?
+  alertDate   DateTime?
+  alertScore  Int?
+  location_id Int?
+  created_at  DateTime?
+  expires_on  DateTime?
+  locations   locations?  @relation(fields: [location_id], references: [id])
+>>>>>>> e82522b62ee6d2d399cd1bf7bbab97c4a47c4e18
 }
 
 model locations {
-  id              Int              @id @default(autoincrement())
-  location_events Int?
-  name            String?
-  country         String?
-  googlemap_URL   String?
-  location_type   String?
-  longitude       Float?
-  latitutde       Float?
-  events          events?          @relation(fields: [location_events], references: [id])
-  savedLocations  savedLocations[]
+  id             Int              @id @default(autoincrement())
+  name           String?
+  country        String?
+  googlemap_URL  String?          @unique
+  location_type  String?
+  longitude      Float?
+  latitude       Float?
+  events         events[]
+  savedLocations savedLocations[]
 }
 
 model savedLocations {
-  id          Int        @id @default(autoincrement())
-  user_id     Int?
-  location_id Int?
-  locations   locations? @relation(fields: [location_id], references: [id])
-  users       users?     @relation(fields: [user_id], references: [id])
+  id             Int        @id @default(autoincrement())
+  user_id        Int?
+  location_id    Int?
+  selection_date DateTime?
+  locations      locations? @relation(fields: [location_id], references: [id])
+  users          users?     @relation(fields: [user_id], references: [id])
 }
 
 model users {
   id             Int              @id @default(autoincrement())
-  username       String?
-  password       String?
-  email          String?
+  username       String?          @unique
+  password       String?          @unique
+  firstName      String?
+  lastName       String?
   savedLocations savedLocations[]
 }
 
