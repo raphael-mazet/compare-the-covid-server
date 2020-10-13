@@ -8,15 +8,6 @@ datasource db {
 }
 
 model events {
-<<<<<<< HEAD
-  id         Int         @id @default(autoincrement())
-  alertType  alert_type?
-  alertDate  DateTime?
-  alertScore Int?
-  created_at DateTime?
-  expires_on DateTime?
-  locations  locations[]
-=======
   id          Int         @id @default(autoincrement())
   alertType   alert_type?
   alertDate   DateTime?
@@ -25,7 +16,6 @@ model events {
   created_at  DateTime?
   expires_on  DateTime?
   locations   locations?  @relation(fields: [location_id], references: [id])
->>>>>>> e82522b62ee6d2d399cd1bf7bbab97c4a47c4e18
 }
 
 model locations {
