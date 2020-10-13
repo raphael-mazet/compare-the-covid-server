@@ -9,7 +9,7 @@ datasource db {
 
 model events {
   id         Int         @id @default(autoincrement())
-  alertType  String?
+  alertType  alert_type?
   alertDate  DateTime?
   alertScore Int?
   created_at DateTime?
@@ -44,4 +44,10 @@ model users {
   password       String?
   email          String?
   savedLocations savedLocations[]
+}
+
+enum alert_type {
+  confirmed
+  safe
+  suspected
 }
