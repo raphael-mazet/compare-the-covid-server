@@ -17,7 +17,7 @@
 // }
 
 // mutation {
-//   createUser (username: "playground", password: "test", email: "xxx") {
+//   createUser (username: "davidhardy", password: "admin", email: "xxx") {
 //     id
 //     username
 //     password
