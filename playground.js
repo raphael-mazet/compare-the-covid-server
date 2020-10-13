@@ -183,3 +183,13 @@
 //     selection_date
 //   }
 // }
+
+// mutation {
+//   deleteSavedLocation (
+//     user_id:1,
+//     location_id:6,
+//   ) 
+//   {
+//     count
+//   }
+// }
