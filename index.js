@@ -1,7 +1,15 @@
-const server = require('./graphql');
+const server = require('./graphql')
+var dotenv = require('dotenv')
+var dotenvExpand = require('dotenv-expand')
+var myEnv = dotenv.config({path: './prisma/.env'})
+dotenvExpand(myEnv)
 
-server
-  .listen()
-  .then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`); // eslint-disable-line no-console
-  });
+const PORT = process.env.PORT || 4000;
+
+server.listen(
+  { port: PORT },
+  () =>
+    console.log(
+      `🚀  Server ready at port ${PORT}`,
+    ),
+)
