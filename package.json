@@ -4,6 +4,7 @@
     "apollo-server": "^2.18.2",
     "commitizen": "^4.2.1",
     "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "graphql": "^15.3.0",
     "prisma": "^1.34.10"
   },

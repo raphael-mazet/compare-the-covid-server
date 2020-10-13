@@ -5,7 +5,8 @@ module.exports = `
     id: Int!
     username: String!
     password: String!
-    email: String!
+    firstName: String!
+    lastName: String!
   }
 
   type Events {

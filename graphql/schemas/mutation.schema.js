@@ -3,7 +3,8 @@ module.exports = `
     createUser(
       username: String!
       password: String!
-      email: String!
+      firstName: String!
+      lastName: String!
     ) :Users
 
     createEvent(

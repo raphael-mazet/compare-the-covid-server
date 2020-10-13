@@ -10,7 +10,8 @@ exports.createNewUser = async (parent, args, ctx) => {
       data: { 
         username: args.username,
         password: args.password,
-        email: args.email,
+        firstName: args.firstName,
+        lastName: args.lastName,
       }
     });
   }

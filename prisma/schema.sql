@@ -4,7 +4,8 @@ CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "username" varchar UNIQUE,
   "password" varchar UNIQUE,
-  "email" varchar
+  "firstName" varchar,
+  "lastName" varchar
 );
 
 CREATE TABLE "locations" (
