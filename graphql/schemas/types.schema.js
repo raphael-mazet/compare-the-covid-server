@@ -1,6 +1,10 @@
 module.exports = `
   scalar DateScalar
 
+  input LocationIds {
+    location_ids: [Int]
+  }
+
   type Users {
     id: Int!
     username: String!

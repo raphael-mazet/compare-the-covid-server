@@ -12,6 +12,7 @@ const resolvers = {
     getUserbyUsernameAndPassword: query.userbyUsernameAndPassword,
     getEventsbyAlertType: query.eventsbyAlertType,
     getEventsbyLocation_Id: query.eventsbyLocation_Id,
+    getEventsbyLocation_Ids: query.eventsbyLocation_Ids,
     getLocationbyURL: query.getLocationbyURL,
     getLocationbyId: query.getLocationbyId,
     getSavedLocationbyUser_Id: query.savedLocationbyUser_Id,
