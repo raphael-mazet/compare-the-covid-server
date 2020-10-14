@@ -48,6 +48,26 @@
 //   }
 // }
 
+
+// query {
+//   getEventsbyLocation_Ids(location_ids:[1,2,3]) {
+//     id
+//     location_id {
+//       id
+//     	name
+//    		country
+//     	googlemap_URL
+//     	location_type
+//     	longitude
+//     	latitude
+//     }
+//   	alertDate
+//     alertScore
+//     created_at
+//     expires_on
+//   }
+// }
+
 // query {
 //   getEventsbyLocation_Id(location_id:4) {
 //     id

@@ -28,14 +28,14 @@ exports.eventsbyLocation_Id = (parent, args, ctx) => {
 };
 
 exports.eventsbyLocation_Ids = async (parent, args, ctx) => {
-  const events = []
+  const events = [];
   for (let id of args.location_ids) {
     const res = await ctx.prisma.events.findMany({
       where: { location_id: id }
     });
-    events.push(res);
+    events.push(...res);
   }
-  return events
+  return events;
 };
 
 exports.getLocationbyURL = (parent, args, ctx) => {
