@@ -27,7 +27,7 @@ exports.eventsbyLocation_Id = (parent, args, ctx) => {
   });
 };
 
-exports.eventsbyLocation_Ids = async (parent, args, ctx) => {
+exports.eventsbyMultipleLocationIds = async (parent, args, ctx) => {
   const events = [];
   for (let id of args.location_ids) {
     const res = await ctx.prisma.events.findMany({
