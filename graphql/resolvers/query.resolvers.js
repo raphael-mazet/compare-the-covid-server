@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
+
 exports.userbyId = (parent, args, ctx) => {
   return ctx.prisma.users.findOne({
     where: { id: args.id }
@@ -5,14 +9,36 @@ exports.userbyId = (parent, args, ctx) => {
 };
 
 exports.userbyUsernameAndPassword = async (parent, args, ctx) => {  
+  const response = {
+    status: "",
+    message: "",
+    token: "",
+    userData: {},
+  };
+
   const usernameExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
   if (usernameExists) {
-    //de-hash the password and confirm
-    return usernameExists.password === args.password ? usernameExists : null;
+    const validatedPass = await bcrypt.compare(args.password, usernameExists.password);
+    if (validatedPass) {
+      const accessToken = jwt.sign(usernameExists.id, SECRET_KEY);
+      response.token = accessToken;
+      response.userData = usernameExists;
+      delete response.userData.password;
+      response.status = 200;
+      response.message = 'Authenticated';
+      console.log(response)
+      return response;
+    } else {
+      response.status = 404;
+      response.message = "Wrong Username or Password";
+      return response;
+    }
   } else {
-    return null;
+    response.status = 404;
+    response.message = "Wrong Username or Password";
+    return response;
   }
 };
 

@@ -1,7 +1,7 @@
 module.exports = `
   type Query {
     getUserbyId (id: Int!): Users
-    getUserbyUsernameAndPassword (username: String!, password:String!): Users
+    getUserbyUsernameAndPassword (username: String!, password:String!): UserCreation
     getEventsbyAlertType (alertType: String!): [Events]
     getEventsbyLocation_Id (location_id: Int!): [Events]
     getEventsbyMultipleLocationIds(location_ids: [Int]): [Events]

@@ -10,7 +10,6 @@ exports.createNewUser = async (parent, args, ctx) => {
     token: '',
     userData: {}
   }
-
   const userExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
@@ -37,7 +36,6 @@ exports.createNewUser = async (parent, args, ctx) => {
       response.userData = newUser;
       delete response.userData.password;
       response.token = accessToken;
-      console.log('response', response)
       return response;
     } else {
       return null;
