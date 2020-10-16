@@ -4,6 +4,8 @@ const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
 
 exports.createNewUser = async (parent, args, ctx) => {
 
+  console.log('hello')
+
   const response = {
     status: '',
     message: '',
