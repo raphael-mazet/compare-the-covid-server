@@ -9,6 +9,7 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
     where: { username: args.username }
   });
   if (usernameExists) {
+    //de-hash the password and confirm
     return usernameExists.password === args.password ? usernameExists : null;
   } else {
     return null;

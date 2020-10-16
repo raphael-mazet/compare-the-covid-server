@@ -5,7 +5,7 @@ module.exports = `
       password: String!
       firstName: String!
       lastName: String!
-    ) :Users
+    ) :UserCreation
 
     createEvent(
       alertType: String!
@@ -46,5 +46,5 @@ module.exports = `
   type BatchPayload {
     count: Int!
   }
-  
+
 `;

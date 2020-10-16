@@ -1,10 +1,17 @@
 module.exports = `
   scalar DateScalar
 
+  type UserCreation {
+    message: String!,
+    token: String,
+    status: Int!,
+    userData: Users
+  }
+
   type Users {
     id: Int!
     username: String!
-    password: String!
+    password: String
     firstName: String!
     lastName: String!
   }

@@ -1,19 +1,48 @@
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
+
 exports.createNewUser = async (parent, args, ctx) => {
+
+  const response = {
+    status: '',
+    message: '',
+    token: '',
+    userData: {}
+  }
+
   const userExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
 
   if (userExists) {
-    return null;
+    response.message = 'Email already used';
+    response.status = 404;
+    return response;
   } else {
-    return ctx.prisma.users.create({
+    const hash = await bcrypt.hash(args.password, 10);
+    const newUser = await ctx.prisma.users.create({
       data: { 
         username: args.username,
-        password: args.password,
+        password: hash,
         firstName: args.firstName,
         lastName: args.lastName,
       }
     });
+
+    if (newUser) {
+      const accessToken = jwt.sign(newUser.id, SECRET_KEY);
+      response.status= 200;
+      response.message = 'User generated';
+      response.userData = newUser;
+      delete response.userData.password;
+      response.token = accessToken;
+      console.log('response', response)
+      return response;
+    } else {
+      return null;
+    }
+    
   }
 };
 
