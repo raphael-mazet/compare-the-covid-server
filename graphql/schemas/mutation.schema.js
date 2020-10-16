@@ -21,8 +21,8 @@ module.exports = `
       country: String
       googlemap_URL: String!
       location_type: String
-      longitude: Int
-      latitude: Int
+      longitude: String
+      latitude: String
     ) :Locations!
 
     createSavedLocation(
