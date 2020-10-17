@@ -10,3 +10,15 @@ exports.updateExistingSavedLocation = async (parent, args, ctx) => {
   });
   return locationsUpdated;
 };
+
+exports.updateLastCheckedEvents = async (parent, args, ctx) => {
+  const lastCheckedEventUpdated = await ctx.prisma.users.update({
+    where: { 
+      id: args.id,
+    },
+    data: {
+      last_checkedEvents: args.last_checkedEvents,
+    }
+  });
+  return lastCheckedEventUpdated;
+};
