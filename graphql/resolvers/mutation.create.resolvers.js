@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { send } = require('process');
 const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
+const sendEmail = require('../../mail/sendmail');
+
 
 exports.createNewUser = async (parent, args, ctx) => {
-
-  console.log('hello')
-
   const response = {
     status: '',
     message: '',
@@ -15,6 +15,7 @@ exports.createNewUser = async (parent, args, ctx) => {
   const userExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
+  console.log('userexists', userExists)
 
   if (userExists) {
     response.message = 'Email already used';
@@ -28,10 +29,18 @@ exports.createNewUser = async (parent, args, ctx) => {
         password: hash,
         firstName: args.firstName,
         lastName: args.lastName,
+        email: args.email,
+        last_loggedin: new Date().toISOString()
       }
     });
-
+    console.log('newUser', newUser)
     if (newUser) {
+      await sendEmail({
+        to: 'rahul.ruecker@ethereal.email',
+        subject:'test',
+        html: `<h4>Verify Email</h4>
+        <p>Thanks for registering!</p>`
+      })
       const accessToken = jwt.sign(newUser.id, SECRET_KEY);
       response.status= 200;
       response.message = 'User generated';
@@ -62,6 +71,7 @@ exports.createNewEvent = (parent, args, ctx) => {
 };
 
 exports.createNewLocation = (parent, args, ctx) => {
+  // check that the new location doesn't already exist in the DB
   return ctx.prisma.locations.create({
     data: { 
       name: args.name,
@@ -81,7 +91,6 @@ exports.createNewSavedLocation = async (parent, args, ctx) => {
       location_id: { equals: args.location_id },
     }
   });
-
   if (locationExists.length) {
     return locationExists[0];
   } else {

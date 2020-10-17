@@ -14,6 +14,9 @@ module.exports = `
     password: String
     firstName: String!
     lastName: String!
+    email: String
+    last_loggedin: DateScalar
+    last_checkedEvents: DateScalar
   }
 
   type Events {

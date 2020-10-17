@@ -42,9 +42,12 @@ model savedLocations {
 model users {
   id             Int              @id @default(autoincrement())
   username       String?          @unique
-  password       String?          @unique
+  password       String?          
   firstName      String?
   lastName       String?
+  email          String?
+  last_loggedin  DateTime?
+  last_checkedEvents DateTime?
   savedLocations savedLocations[]
 }
 
