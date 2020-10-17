@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { send } = require('process');
 const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
+const sendEmail = require('../../mail/sendmail');
+
 
 exports.createNewUser = async (parent, args, ctx) => {
-
-  console.log('hello')
-
   const response = {
     status: '',
     message: '',
@@ -32,6 +32,12 @@ exports.createNewUser = async (parent, args, ctx) => {
     });
 
     if (newUser) {
+      await sendEmail({
+        to: 'rahul.ruecker@ethereal.email',
+        subject:'test',
+        html: `<h4>Verify Email</h4>
+        <p>Thanks for registering!</p>`
+      })
       const accessToken = jwt.sign(newUser.id, SECRET_KEY);
       response.status= 200;
       response.message = 'User generated';

@@ -1,0 +1,11 @@
+{
+  "emailFrom": "compare-thecovid-server@test.com",
+  "smtpOptions": {
+      "host": "smtp.ethereal.email",
+      "port": 587,
+      "auth": {
+          "user": "rahul.ruecker@ethereal.email",
+          "pass": "MC1g6F3SnK4XHX7TEs"
+      }
+  }
+}
