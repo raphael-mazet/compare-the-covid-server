@@ -25,10 +25,9 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
       const accessToken = jwt.sign(usernameExists.id, SECRET_KEY);
       response.token = accessToken;
       response.userData = usernameExists;
-      delete response.userData.password;
+      response.userData.password = null;
       response.status = 200;
       response.message = 'Authenticated';
-      console.log(response)
       return response;
     } else {
       response.status = 404;
