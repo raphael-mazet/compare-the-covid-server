@@ -10,6 +10,11 @@ module.exports = `
       last_checkedEvents: DateScalar
     ) :UserCreation
 
+    updateLastCheckedEvents(
+      id: Int!
+      last_checkedEvents: DateScalar!
+    ) :CheckedEventResponse
+
     createEvent(
       alertType: String!
       alertDate: DateScalar

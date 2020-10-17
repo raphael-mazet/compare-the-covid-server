@@ -19,6 +19,11 @@ module.exports = `
     last_checkedEvents: DateScalar
   }
 
+  type CheckedEventResponse {
+    id: Int!
+    last_checkedEvents: DateScalar!
+  }
+
   type Events {
     id: Int!
     alertType: String!
