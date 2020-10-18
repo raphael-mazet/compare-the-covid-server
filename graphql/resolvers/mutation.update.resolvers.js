@@ -20,5 +20,9 @@ exports.updateLastCheckedEvents = async (parent, args, ctx) => {
       last_checkedEvents: args.last_checkedEvents,
     }
   });
-  return lastCheckedEventUpdated;
+  const response = {
+    id: lastCheckedEventUpdated.id,
+    last_checkedEvents: lastCheckedEventUpdated.last_checkedEvents
+  }
+  return response;
 };
