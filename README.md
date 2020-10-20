@@ -4,7 +4,7 @@ Update local .env file (needs to be located in prisma folder) with: PORT, DB_USE
 
 Create an empty database in psql which corresponds to your DB_NAME
 
-In the Prisma folder, run (where you replace DB_NAME): 
+In the Prisma folder, run: 
 psql -h DB_HOST -d DB_NAME -U DB_USER -f schema.sql 
 
 npx prisma introspect 
