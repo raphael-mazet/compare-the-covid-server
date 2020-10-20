@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model events {
+  id          Int         @id @default(autoincrement())
+  alertType   alert_type?
+  alertDate   DateTime?
+  alertScore  Int?
+  location_id Int?
+  created_at  DateTime?
+  expires_on  DateTime?
+  locations   locations?  @relation(fields: [location_id], references: [id])
+}
+
+model locations {
+  id             Int              @id @default(autoincrement())
+  name           String?
+  country        String?
+  googlemap_URL  String?          @unique
+  location_type  String?
+  longitude      Float?
+  latitude       Float?
+  events         events[]
+  savedLocations savedLocations[]
+}
+
+model savedLocations {
+  id             Int        @id @default(autoincrement())
+  user_id        Int?
+  location_id    Int?
+  selection_date DateTime?
+  locations      locations? @relation(fields: [location_id], references: [id])
+  users          users?     @relation(fields: [user_id], references: [id])
+}
+
+model users {
+  id                 Int              @id @default(autoincrement())
+  username           String?          @unique
+  password           String?
+  firstName          String?
+  lastName           String?
+  email              String?
+  last_loggedin      DateTime?
+  last_checkedEvents DateTime?
+  savedLocations     savedLocations[]
+}
+
+enum alert_type {
+  confirmed
+  safe
+  suspected
+}

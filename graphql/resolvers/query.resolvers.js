@@ -28,16 +28,17 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
       const userSavedLocations = await ctx.prisma.savedLocations.findMany({
         where: { user_id: usernameExists.id }
       })
-
+      console.log('userSavedLocations',userSavedLocations)
       const userLocations = [];
       const userEvents = [];
       for (let location of userSavedLocations) {
         const oneLocation = await ctx.prisma.locations.findOne({
-          where: { id: location.id }
+          where: { id: location.location_id }
         });
+        console.log('oneLocation',oneLocation)
         userLocations.push(oneLocation)
         const events = await ctx.prisma.events.findMany({
-          where: { location_id: location.id }
+          where: { location_id: location.location_id }
         });
         userEvents.push(...events);
       }
@@ -49,6 +50,7 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
       response.eventData = userEvents;
       response.status = 200;
       response.message = 'Authenticated';
+      console.log('response', response)
       return response;
     } else {
       response.status = 404;
