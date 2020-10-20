@@ -15,8 +15,6 @@ exports.createNewUser = async (parent, args, ctx) => {
   const userExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
-  console.log('userexists', userExists)
-
   if (userExists) {
     response.message = 'Email already used';
     response.status = 404;
@@ -33,12 +31,12 @@ exports.createNewUser = async (parent, args, ctx) => {
         last_loggedin: new Date().toISOString()
       }
     });
-    console.log('newUser', newUser)
     if (newUser) {
       await sendEmail({
+        // to: `${newUser.email}`,
         to: 'rahul.ruecker@ethereal.email',
-        subject:'test',
-        html: `<h4>Verify Email</h4>
+        subject:'Compare-the-Covid Sign-Up Confirmed',
+        html: `<h4>User Created</h4>
         <p>Thanks for registering!</p>`
       })
       const accessToken = jwt.sign(newUser.id, SECRET_KEY);
@@ -56,6 +54,7 @@ exports.createNewUser = async (parent, args, ctx) => {
 };
 
 exports.createNewEvent = (parent, args, ctx) => {
+  console.log('args',args)
   return ctx.prisma.events.create({
     data: { 
       alertType: args.alertType,

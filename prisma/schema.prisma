@@ -40,15 +40,15 @@ model savedLocations {
 }
 
 model users {
-  id             Int              @id @default(autoincrement())
-  username       String?          @unique
-  password       String?          
-  firstName      String?
-  lastName       String?
-  email          String?
-  last_loggedin  DateTime?
+  id                 Int              @id @default(autoincrement())
+  username           String?          @unique
+  password           String?
+  firstName          String?
+  lastName           String?
+  email              String?
+  last_loggedin      DateTime?
   last_checkedEvents DateTime?
-  savedLocations savedLocations[]
+  savedLocations     savedLocations[]
 }
 
 enum alert_type {
