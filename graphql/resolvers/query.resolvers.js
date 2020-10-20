@@ -9,6 +9,7 @@ exports.userbyId = (parent, args, ctx) => {
 };
 
 exports.userbyUsernameAndPassword = async (parent, args, ctx) => {  
+  console.log(' ---> args', args);
   const response = {
     status: "",
     message: "",
@@ -21,21 +22,26 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
   });
   if (usernameExists) {
     const validatedPass = await bcrypt.compare(args.password, usernameExists.password);
+
     if (validatedPass) {
       const accessToken = jwt.sign(usernameExists.id, SECRET_KEY);
-      console.log(' ---> usernameExists', usernameExists);
-      const userLocations = await ctx.prisma.savedLocations.findMany({
+
+      const userSavedLocations = await ctx.prisma.savedLocations.findMany({
         where: { user_id: usernameExists.id }
       })
-      console.log(' ---> userLocations', userLocations);
+
+      const userLocations = [];
       const userEvents = [];
-      for (let location of userLocations) {
+      for (let location of userSavedLocations) {
+        const oneLocation = await ctx.prisma.locations.findOne({
+          where: { id: location.id }
+        });
+        userLocations.push(oneLocation)
         const events = await ctx.prisma.events.findMany({
           where: { location_id: location.id }
         });
         userEvents.push(...events);
       }
-      console.log(' ---> userEvents', userEvents);
 
       response.token = accessToken;
       response.userData = usernameExists;
