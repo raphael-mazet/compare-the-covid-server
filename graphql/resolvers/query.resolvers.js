@@ -21,22 +21,43 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
   });
   if (usernameExists) {
     const validatedPass = await bcrypt.compare(args.password, usernameExists.password);
+
     if (validatedPass) {
       const accessToken = jwt.sign(usernameExists.id, SECRET_KEY);
+
+      const userSavedLocations = await ctx.prisma.savedLocations.findMany({
+        where: { user_id: usernameExists.id }
+      })
+
+      const userLocations = [];
+      const userEvents = [];
+      for (let location of userSavedLocations) {
+        const oneLocation = await ctx.prisma.locations.findOne({
+          where: { id: location.id }
+        });
+        userLocations.push(oneLocation)
+        const events = await ctx.prisma.events.findMany({
+          where: { location_id: location.id }
+        });
+        userEvents.push(...events);
+      }
+
       response.token = accessToken;
       response.userData = usernameExists;
       response.userData.password = null;
+      response.locationData = userLocations;
+      response.eventData = userEvents;
       response.status = 200;
       response.message = 'Authenticated';
       return response;
     } else {
       response.status = 404;
-      response.message = "Wrong Username or Password";
+      response.message = "Wrong username or password";
       return response;
     }
   } else {
     response.status = 404;
-    response.message = "Wrong Username or Password";
+    response.message = "Wrong username or password";
     return response;
   }
 };
