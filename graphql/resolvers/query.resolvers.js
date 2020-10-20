@@ -9,7 +9,6 @@ exports.userbyId = (parent, args, ctx) => {
 };
 
 exports.userbyUsernameAndPassword = async (parent, args, ctx) => {  
-  console.log(' ---> args', args);
   const response = {
     status: "",
     message: "",
