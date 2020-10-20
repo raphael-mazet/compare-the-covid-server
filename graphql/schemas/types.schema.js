@@ -5,7 +5,9 @@ module.exports = `
     message: String!,
     token: String,
     status: Int!,
-    userData: Users
+    userData: Users,
+    locationData: [Locations],
+    eventData: [Events]
   }
 
   type Users {
