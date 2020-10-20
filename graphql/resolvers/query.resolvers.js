@@ -31,12 +31,12 @@ exports.userbyUsernameAndPassword = async (parent, args, ctx) => {
       return response;
     } else {
       response.status = 404;
-      response.message = "Wrong Username or Password";
+      response.message = "Wrong username or password";
       return response;
     }
   } else {
     response.status = 404;
-    response.message = "Wrong Username or Password";
+    response.message = "Wrong username or password";
     return response;
   }
 };

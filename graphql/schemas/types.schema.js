@@ -9,11 +9,11 @@ module.exports = `
   }
 
   type Users {
-    id: Int!
-    username: String!
+    id: Int
+    username: String
     password: String
-    firstName: String!
-    lastName: String!
+    firstName: String
+    lastName: String
     email: String
     last_loggedin: DateScalar
     last_checkedEvents: DateScalar
