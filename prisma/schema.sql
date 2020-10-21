@@ -3,9 +3,12 @@ CREATE TYPE alert_type AS ENUM ('confirmed', 'suspected', 'safe');
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "username" varchar UNIQUE,
-  "password" varchar UNIQUE,
+  "password" varchar,
   "firstName" varchar,
-  "lastName" varchar
+  "lastName" varchar,
+  "email" varchar,
+  "last_loggedin" timestamp,
+  "last_checkedEvents" timestamp
 );
 
 CREATE TABLE "locations" (

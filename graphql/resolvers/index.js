@@ -20,6 +20,7 @@ const resolvers = {
   },
   Mutation: {
     createUser: mutationCreate.createNewUser,
+    updateLastCheckedEvents: mutationUpdate.updateLastCheckedEvents,
     createEvent: mutationCreate.createNewEvent,
     createLocation: mutationCreate.createNewLocation,
     createSavedLocation: mutationCreate.createNewSavedLocation,

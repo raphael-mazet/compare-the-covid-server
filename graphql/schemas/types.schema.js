@@ -1,12 +1,29 @@
 module.exports = `
   scalar DateScalar
 
+  type UserCreation {
+    message: String!,
+    token: String,
+    status: Int!,
+    userData: Users,
+    locationData: [Locations],
+    eventData: [Events]
+  }
+
   type Users {
+    id: Int
+    username: String
+    password: String
+    firstName: String
+    lastName: String
+    email: String
+    last_loggedin: DateScalar
+    last_checkedEvents: DateScalar
+  }
+
+  type CheckedEventResponse {
     id: Int!
-    username: String!
-    password: String!
-    firstName: String!
-    lastName: String!
+    last_checkedEvents: DateScalar!
   }
 
   type Events {
@@ -25,8 +42,8 @@ module.exports = `
     country: String
     googlemap_URL: String!
     location_type: String
-    longitude: Int
-    latitude: Int
+    longitude: String
+    latitude: String
   }
   
   type SavedLocations {

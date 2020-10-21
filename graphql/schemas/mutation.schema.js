@@ -5,7 +5,15 @@ module.exports = `
       password: String!
       firstName: String!
       lastName: String!
-    ) :Users
+      email: String
+      last_loggedin: DateScalar
+      last_checkedEvents: DateScalar
+    ) :UserCreation
+
+    updateLastCheckedEvents(
+      id: Int!
+      last_checkedEvents: DateScalar!
+    ) :CheckedEventResponse
 
     createEvent(
       alertType: String!
@@ -21,8 +29,8 @@ module.exports = `
       country: String
       googlemap_URL: String!
       location_type: String
-      longitude: Int
-      latitude: Int
+      longitude: String
+      latitude: String
     ) :Locations!
 
     createSavedLocation(
@@ -46,5 +54,5 @@ module.exports = `
   type BatchPayload {
     count: Int!
   }
-  
+
 `;

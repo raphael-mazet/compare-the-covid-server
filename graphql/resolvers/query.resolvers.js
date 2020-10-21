@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.SECRET_KEY || 'lalala this isnt secure';
+
 exports.userbyId = (parent, args, ctx) => {
   return ctx.prisma.users.findOne({
     where: { id: args.id }
@@ -5,13 +9,58 @@ exports.userbyId = (parent, args, ctx) => {
 };
 
 exports.userbyUsernameAndPassword = async (parent, args, ctx) => {  
+  const response = {
+    status: "",
+    message: "",
+    token: "",
+    userData: {},
+  };
+
   const usernameExists = await ctx.prisma.users.findOne({
     where: { username: args.username }
   });
   if (usernameExists) {
-    return usernameExists.password === args.password ? usernameExists : null;
+    const validatedPass = await bcrypt.compare(args.password, usernameExists.password);
+
+    if (validatedPass) {
+      const accessToken = jwt.sign(usernameExists.id, SECRET_KEY);
+
+      const userSavedLocations = await ctx.prisma.savedLocations.findMany({
+        where: { user_id: usernameExists.id }
+      })
+      console.log('userSavedLocations',userSavedLocations)
+      const userLocations = [];
+      const userEvents = [];
+      for (let location of userSavedLocations) {
+        const oneLocation = await ctx.prisma.locations.findOne({
+          where: { id: location.location_id }
+        });
+        console.log('oneLocation',oneLocation)
+        userLocations.push(oneLocation)
+        const events = await ctx.prisma.events.findMany({
+          where: { location_id: location.location_id }
+        });
+        userEvents.push(...events);
+      }
+
+      response.token = accessToken;
+      response.userData = usernameExists;
+      response.userData.password = null;
+      response.locationData = userLocations;
+      response.eventData = userEvents;
+      response.status = 200;
+      response.message = 'Authenticated';
+      console.log('response', response)
+      return response;
+    } else {
+      response.status = 404;
+      response.message = "Wrong username or password";
+      return response;
+    }
   } else {
-    return null;
+    response.status = 404;
+    response.message = "Wrong username or password";
+    return response;
   }
 };
 
