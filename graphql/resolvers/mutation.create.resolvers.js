@@ -69,18 +69,25 @@ exports.createNewEvent = (parent, args, ctx) => {
   });
 };
 
-exports.createNewLocation = (parent, args, ctx) => {
+exports.createNewLocation = async (parent, args, ctx) => {
   // check that the new location doesn't already exist in the DB
-  return ctx.prisma.locations.create({
-    data: { 
-      name: args.name,
-      country: args.country,
-      googlemap_URL: args.googlemap_URL,
-      location_type: args.location_type,
-      longitude: Number(args.longitude),
-      latitude: Number(args.latitude),
-    }
+  const locationExists = await ctx.prisma.locations.findOne({
+    where: { googlemap_URL: args.googlemap_URL }
   });
+  if (!locationExists) { 
+    return ctx.prisma.locations.create({
+      data: { 
+        name: args.name,
+        country: args.country,
+        googlemap_URL: args.googlemap_URL,
+        location_type: args.location_type,
+        longitude: Number(args.longitude),
+        latitude: Number(args.latitude),
+      }
+    });
+  } else {
+    return locationExists
+  }
 };
 
 exports.createNewSavedLocation = async (parent, args, ctx) => {
