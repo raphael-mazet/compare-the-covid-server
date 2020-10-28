@@ -20,10 +20,11 @@ Run the *Compare the Covid* [frontend server](https://github.com/raphael-mazet/c
 
 Create a local .env file in the Prisma directory with:
 ```
-PORT=<yourport>
+DB_PORT=<yourport>
 DB_USERNAME=<yourusername>
 DB_PASSWORD=<yourpassword>
 DB_HOST=<yourhost>
+DB_NAME=<yourdb>
 DATABASE_URL = postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 ```
 
